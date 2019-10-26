@@ -1,0 +1,37 @@
+IMG_VERSION=latest
+
+KUBE_EDITOR=vi
+
+ENV_NAME={k8s-environment-name}
+
+LOCATION={azureregion}
+
+SUBSCRIPTION_ID={azure subscription id}
+
+## generate with $(openssl rand -hex 32)
+SERVICE_PRINCIPAL_PASSWORD={service principal password}
+
+### ARM Template ###
+TEMPLATE_FILE={dev.json}
+
+## create server and client in azure AD ###
+CLIENT_APP_ID={native app ID}
+SERVER_APP_ID={WEB/API ID}
+
+### k8s Service Account ###
+DEFAULT_SERVICE_ACCOUNT=default
+NAMESPACE_IN_WHICH_TO_ENABLE_PRIVATE_PULL=default
+
+### Azure Container Registry Name ###
+ACR_NAME={azureregistry}
+
+### Azure Container Registry User Name ###
+ACR_USERNAME={azure_registry_username}
+### Azure Container Registry passsword ###
+ACR_PASSWORD={azure_registry_password}
+### Azure Container Registry Email ###
+USER_EMAIL={azure_registry_email}
+### Azure Container Registry Resource Group ###
+ACR_RESOURCE_GROUP={container-registry-res}
+
+PROXY_PORT={kubelctl proxy port}

@@ -1,0 +1,33 @@
+version: "3.1"
+# https://docs.docker.com/compose/compose-file/
+
+services:
+  cloudclient:
+    image: cloudclient:${IMG_VERSION}
+    build:
+      context: .
+    hostname: ${ENV_NAME}
+    environment: 
+      - KUBE_EDITOR=${KUBE_EDITOR}
+      - ENV_NAME=${ENV_NAME}
+      - RESOURCE_GROUP_NAME=${ENV_NAME}-kube-res
+      - LOCATION=${LOCATION}
+      - SUBSCRIPTION_ID=${SUBSCRIPTION_ID}
+      - SERVICE_PRINCIPAL_NAME=sp-for-${ENV_NAME}-kube-res-group
+      - SERVICE_PRINCIPAL_PASSWORD=${SERVICE_PRINCIPAL_PASSWORD}
+      - TEMPLATE_FILE=${TEMPLATE_FILE}
+      - DNS_PREFIX=${ENV_NAME}
+      - CLIENT_APP_ID=${CLIENT_APP_ID}
+      - SERVER_APP_ID=${SERVER_APP_ID}
+      - DEFAULT_SERVICE_ACCOUNT=${DEFAULT_SERVICE_ACCOUNT}
+      - NAMESPACE_IN_WHICH_TO_ENABLE_PRIVATE_PULL=${NAMESPACE_IN_WHICH_TO_ENABLE_PRIVATE_PULL}
+      - ACR_NAME=${ACR_NAME}
+      - ACR_USERNAME=${ACR_USERNAME}
+      - ACR_PASSWORD=${ACR_PASSWORD}
+      - USER_EMAIL=${USER_EMAIL}
+      - ACR_RESOURCE_GROUP=${ACR_RESOURCE_GROUP}
+    tty: true
+    ports:
+    - ${PROXY_PORT}:8001
+    volumes:
+      - ./data:/home/cc
