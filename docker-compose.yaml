@@ -3,13 +3,11 @@ version: "3.1"
 
 services:
   cloudclient:
-    image: cloudclient:${IMG_VERSION}
-    build:
-      context: .
+    image: herzcthu/cloud-client:${IMG_VERSION:-latest}
     hostname: ${ENV_NAME}
     environment: 
-      - KUBE_EDITOR=${KUBE_EDITOR}
-      - ENV_NAME=${ENV_NAME}
+      - KUBE_EDITOR=${KUBE_EDITOR:-vi}
+      - ENV_NAME=${ENV_NAME:-cloudclient}
       - RESOURCE_GROUP_NAME=${ENV_NAME}-kube-res
       - LOCATION=${LOCATION}
       - SUBSCRIPTION_ID=${SUBSCRIPTION_ID}
@@ -28,6 +26,6 @@ services:
       - ACR_RESOURCE_GROUP=${ACR_RESOURCE_GROUP}
     tty: true
     ports:
-    - ${PROXY_PORT}:8001
+    - ${PROXY_PORT:-8001}:8001
     volumes:
       - ./data:/home/cc
