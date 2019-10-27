@@ -1,8 +1,9 @@
 FROM ubuntu:16.04
 
+ARG HELMVAR
+
 RUN apt-get update \
   && apt-get install -y apt-transport-https apt-file jq nano ssh curl tar dnsutils gnupg lsb-release git  python python-pip vim
-ENV HELMVAR
 
 RUN echo $HELMVER && curl "https://storage.googleapis.com/kubernetes-helm/helm-v$HELMVER-linux-amd64.tar.gz" -o "helm-v$HELMVER-linux-amd64.tar.gz" \
   && tar -zxvf helm-v$HELMVER-linux-amd64.tar.gz \
