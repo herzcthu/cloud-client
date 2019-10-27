@@ -1,5 +1,7 @@
 FROM ubuntu:16.04
 
+ARG helmver
+
 RUN apt-get update \
   && apt-get install -y apt-transport-https apt-file jq nano ssh curl tar dnsutils gnupg lsb-release git  python python-pip vim
 
@@ -10,9 +12,9 @@ RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg -o cloudgoogle
 
 RUN pip install awscli
 
-RUN curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get -o get_helm.sh \
-  && chmod +x get_helm.sh \
-  && ./get_helm.sh
+RUN curl https://storage.googleapis.com/kubernetes-helm/helm-v$helmver-linux-amd64.tar.gz -o helm-v$helmver-linux-amd64.tar.gz \
+  && tar -zxvf helm-v$helmver-linux-amd64.tar.gz \
+  && chmod +x linux-amd64/helm && cp linux-amd64/helm /usr/local/bin/
 
 RUN echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $(lsb_release -cs) main" \
   | tee /etc/apt/sources.list.d/azure-cli.list \
