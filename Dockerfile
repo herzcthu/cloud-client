@@ -1,11 +1,11 @@
 FROM ubuntu:16.04
 
-ARG HELMVAR=2.14.3
+ARG HELMVER=2.14.3
 
 RUN apt-get update \
   && apt-get install -y apt-transport-https apt-file jq nano ssh curl tar dnsutils gnupg lsb-release git  python python-pip vim
-RUN echo $HELMVER
-RUN curl "https://storage.googleapis.com/kubernetes-helm/helm-v$HELMVER-linux-amd64.tar.gz" -o helm-v$HELMVER-linux-amd64.tar.gz \
+
+RUN curl https://storage.googleapis.com/kubernetes-helm/helm-v$HELMVER-linux-amd64.tar.gz -o helm-v$HELMVER-linux-amd64.tar.gz \
   && tar -zxvf helm-v$HELMVER-linux-amd64.tar.gz \
   && chmod +x linux-amd64/helm && cp linux-amd64/helm /usr/local/bin/
 
