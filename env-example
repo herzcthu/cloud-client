@@ -1,8 +1,10 @@
 IMG_VERSION=latest
 
+HELM_VERSION=1.14.3
+
 KUBE_EDITOR=vi
 
-ENV_NAME={k8s-environment-name}
+ENV_NAME=cloudclient
 
 LOCATION={azureregion}
 
@@ -34,4 +36,4 @@ USER_EMAIL={azure_registry_email}
 ### Azure Container Registry Resource Group ###
 ACR_RESOURCE_GROUP={container-registry-res}
 
-PROXY_PORT={kubelctl proxy port}
+PROXY_PORT=8001
