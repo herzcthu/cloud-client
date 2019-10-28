@@ -8,7 +8,7 @@ services:
     build:
       context: .
       args: 
-        - HELMVER=${HELM_VERSION:-1.15.3}
+        - HELMVER=${HELM_VERSION:-2.15.3}
     environment: 
       - KUBE_EDITOR=${KUBE_EDITOR:-vi}
       - ENV_NAME=${ENV_NAME:-cloudclient}

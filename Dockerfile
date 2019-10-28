@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-ARG HELMVAR
+ARG HELMVAR=2.14.3
 
 RUN apt-get update \
   && apt-get install -y apt-transport-https apt-file jq nano ssh curl tar dnsutils gnupg lsb-release git  python python-pip vim
