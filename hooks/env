@@ -1,0 +1,2 @@
+GIT_TAG=$(git describe --exact-match --tags)
+VERSION=${GIT_TAG/*-/}
