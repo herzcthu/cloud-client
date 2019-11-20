@@ -1,2 +1,8 @@
-GIT_TAG=$(git describe --exact-match --tags)
-VERSION=${GIT_TAG/*-/}
+GIT_BRANCH=$(git branch | grep \* | cut -d ' ' -f2)
+
+if [[ "${GIT_BRANCH}" = 'master' ]]; then
+	VERSION=${HELM_VERSION}
+else
+	GIT_TAG=$(git describe --exact-match --tags)
+	VERSION=${GIT_TAG/*-/}
+fi
