@@ -2,13 +2,9 @@ version: "3.1"
 # https://docs.docker.com/compose/compose-file/
 
 services:
-  cloudclient:
+  cc:
     image: herzcthu/cloud-client:${IMG_VERSION:-latest}
     hostname: ${ENV_NAME}
-    build:
-      context: .
-      args: 
-        - HELMVER=${HELM_VERSION:-2.15.3}
     environment: 
       - KUBE_EDITOR=${KUBE_EDITOR:-vi}
       - ENV_NAME=${ENV_NAME:-cloudclient}
@@ -31,5 +27,7 @@ services:
     tty: true
     ports:
     - ${PROXY_PORT:-8001}:8001
+    - 15000:15000
     volumes:
       - ./data:/home/cc
+      - /mnt/d/SRC_CODE:/home/cc/SRC_CODE
